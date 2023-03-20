@@ -1,0 +1,281 @@
+# Definition
+
+Turnaround: duration from job arrival until job completion.
+Slowdown: the ratio of turnaround to the job size.
+
+
+
+# 0.1 workload
+
+The average job interarrival time is 1, while the average job size is 0.1.
+Since job sizes are quite tiny, most jobs could be completed before the next job arrives.
+
+## Mean of Turnaround
+
+Therefore, the average turnaround should be very close to the average job size 0.1, regardless of the choice of scheduler.
+Actually, the average turnaround of different schedulers roughly ranges between 0.11 and 0.12.
+
+## Variance of Turnaround
+
+Besides, the turnaround variance should be a relatively tiny value, since the turnaround of each job doesn't vary too much.
+Simiarlly, the turnaround variance of different schedulers roughly ranges between 0.11 and 0.12.
+
+## Mean of Slowdown
+
+Although the average job size is tiny, we can still some relatively large jobs.
+
+1. FIFO (average slowdown=1.55) and SJF (average slowdown=1.52) schedulers are non-preemptive, those jobs come after large jobs
+   have to wait for the large ones to finish. This will hurt the slowdown of those waiting jobs (make the slowdown larger), 
+   which make the average slowdown larger.
+
+2. The execution order of PRIORITY (average slowdown=1.41) is influenced by the static priority of the jobs. If a series of large 
+   jobs of high priority come before a tiny job of low priority, the tiny job will be preempted and have to wait for a long time. 
+   Scenarios like this would hurt the average slowdown, make it not as good as that of SPRT, RR, STRIDE.
+
+3. SRPT (average slowdown=1.04), RR(average slowdown=1.14) and STRIDE (average slowdown=1.15) prefers tiny jobs. tiny jobs will be
+   executed soon after they arrive, which will cause a better slowdown (better means smaller slowdown) for that job. Since tiny 
+   jobs are the majority of 0.1 workload, these algorithms will have good average slowdown. 
+
+## Variance of Slowdown
+
+In the discussion above, we could observe that schedulers with good average slowdown (SRPT, RR, STRIDE) could always complete tiny 
+jobs quickly. In contrast, schedulers with bad average slowdown (FIFO, SJF, PRIORITY) could sometimes make a tiny job wait for the
+completion of a large one.
+
+In other words, good average slowdown corresponds with small slowdown for almost each job, leading to smaller slowdown variance.
+SRPT(stddev slowdown=0.15), RR(stddev slowdown=0.47), STRIDE(stddev slowdown=0.62)
+
+While in scheduler with bad average slowdown, tiny jobs will probablely have larger slowdown than large jobs, which leads to 
+larger slowdown variance.
+FIFO(stddev slowdown=4.40), SJF(stddev slowdown=4.37), PRIORITY(stddev slowdown=3.51)
+
+
+
+# 0.5 workload
+
+The average job interarrival time is 1, while the average job size is 0.5.
+Job sizes are no longer "tiny", but still relatively small.
+However, jobs have a higher chance to wait for the completion of previous jobs.
+
+## Mean of Turnaround
+
+Since 0.5 is still relatively small, when a job arrives, it is usually the only job in the job queue, 
+waiting for the completionof the running job. 
+
+1. With FIFO(average turnaround=1.09) and SJF(average turnaround=0.94), the turnaround is the remaining size of the running
+   job plus the size of the new job, which is roughly twice the average job size, hence approximately 1. With SPRT(average 
+   turnaround=0.77) scheduler, the preemptive property makes sure that small jobs don't need to wait for large ones.
+   Therefore we could have a better average turnaround time.
+
+2. RR(average turnaround=1.10) and STRIDE(average turnaround=1.12) allow the newly arriving job share system resources with 
+   the running job. Since they are usually the only two jobs waiting for being executed, the turnaround time for one job is
+   also roughly twice the average job size.
+
+3. PRIORITY(average turnaround=1.15) would somtimes make small job wait for large ones, or allow the opposite. Since the 
+   average job size is still relatively small, the average turnaround is very close to the metric from other schedulers.
+
+## Variance of Turnaround
+
+1. The turnaround time for each job in FIFO(stddev turnaround=0.95) and SJF(stddev turnaround=0.95) scheduler does not vary
+   too much, hence the turnaround variance is not a large number.
+
+2. SRPT(stddev turnaround=1.12), RR(stddev turnaround=1.31) and STRIDE(stddev turnaround=1.41) will lead to small turnaround
+   for small jobs and large turnaround for large jobs. As a result, their turnaround variances will be larger than the former
+   three schedulers.
+
+3. PRIORITY(stddev turnaround=1.60) would make small job wait for large ones, making the turnaround of some small jobs larger.
+   Since most jobs are small, this would lead to a larger variance.
+
+## Mean of Slowdown
+
+1. As discussed above, SRPT (average slowdown=1.24), RR(average slowdown=2.24) and STRIDE (average slowdown=2.80) "will lead 
+   to small turnaround for small jobs and large turnaround for large jobs". This is a sign for not only good turnaround 
+   variance but also good average slowdown since it means small slowdown for each job.
+
+2. Compareds with workload 0.1, FIFO (average slowdown=18.03) and SJF (average slowdown=15.70) schedulers are more likely make
+   small jobs wait, and would make them wait longer, which would cause huge increase of slowdown for small jobs. This is the 
+   source of the growing average slowdown.
+
+3. The static priority of PRIORITY (average slowdown=1.41) scheduler could to some degree help reduce the problems of FIFO and
+   SJF. By assigning higher static priority for small jobs, it achieves a better average slowdown than these two schedulers.
+
+## Variance of Slowdown
+
+1. Just for reminder, SRPT(stddev slowdown=0.53), RR(stddev slowdown=2.64), STRIDE(stddev slowdown=6.90) could provide small 
+   slowdown for every job. This property naturally leads to small slowdown variance for these three schedulers.
+
+2. According to previous discussions, FIFO(stddev slowdown=275.69), SJF(stddev slowdown=274.94) woud cause much larger slowdown
+   for small jobs. Since the worklist is composed of mainly small job, this would be a disaster for slowdown variance.
+
+3. PRIORITY(stddev slowdown=33.09) could reduce the problems of FIFO and SJF with static priority, but it could not do a job as 
+   good as other jobs such as SRPT. The slowdown variance of PRIORITY is in between.
+
+
+
+# 0.9 / 0.95 / 0.99 workload
+
+The analyses for workload 0.9 / 0.95 / 0.99 are similar since these three numbers of job size are all close to 1 (the average 
+job interarrival time). Just for simplicity, our discussion will focus on the intermediate level, workload 0.95, which we
+believe is representative.
+
+The average job interarrival time is 1, while the average job size is 0.95.
+The average job size is almost 1, jobs have a huge chance to wait for the completion of previous jobs.
+
+## Mean of Turnaround
+
+1. SJF(average turnaround=7.27) and SPRT(average turnaround=6.61) would always prioritize the execution of small jobs. With an
+   increasing system workload, this property would a huge improvement for average turnaround because it helps reduce the 
+   turnaround for small jobs significantly.
+
+2. RR(average turnaround=22.12) and STRIDE(average turnaround=22.58) almost have the same average turnaround as FIFO(average 
+   turnaround=22.11). This is because there are so many jobs waiting in the job queue. To be more specific, FIFO will make the 
+   job wait for the completion of previous jobs. On the other hand, although RR could execute a job before the completion of 
+   former jobs, it will also let it share system resouces with jobs come after it, and consequently slow down the execution 
+   speed for this job. 
+
+3. PRIORITY(average turnaround=24.04) introduce static priority to adjust the execution order of jobs, which is a double-edged 
+   sword. It could optimize the scheduling by assigning higher priority to small jobs or make the situation worse by making 
+   small jobs waiting for a long time after a series of large jobs. With a huge enough worklist, these influces just cancel 
+   out each other, making the average turnaround close to that of FIFO scheduler. 
+
+## Variance of Turnaround
+
+1. Since there are too many jobs waiting in the job queue, the waiting time mainly contribute to the turnaround for each job
+   and the difference of job size become relatively insignificant in FIFO(stddev turnaround=11.12) scheduler. As a result, 
+   the turnaround variance in FIFO is not as significant as in other schedulers. 
+
+2. SJF(stddev turnaround=24.63), SRPT(stddev turnaround=26.59), RR(stddev turnaround=25.05) would complete small jobs first, 
+   while let large jobs wait. This strategy would cause an increase of turnaround variance.
+
+3. PRIORITY(stddev turnaround=54.04) reply on static priority for scheduling tasks. It turns out that this strategy is not 
+   very flexible, therefore the turnaround for different jobs would vary widely.
+
+4. STRIDE(stddev turnaround=42.52) is the tradeoff between RR and PRIORITY, hence the performance is also between these 
+   two schedulers.
+
+## Mean of Slowdown
+
+1. SRPT(average slowdown=2.74) has best average slowdown beacause it could prioritize the scheduling of small jobs. On the 
+   other hand, even though SJF(average slowdown=24.63) shares this strategy, it would sometimes let small jobs wait for the 
+   completion of large jobs since it is not preemptive. As a result, it could not achieve as good average slowdown as SRPT.
+
+2. RR(average slowdown=25.90) and STRIDE(average slowdown=28.35) would also allow small jobs to be executed earlier. However,
+   since they are sharing system resources with other jobs, the execution speed will get slow, which would hurt the average 
+   slowdown metric. Besides, since STRIDE uses the dynamic priority of the current job to set the new coming job, a small job
+   would sometimes be assigned a high dynamic priority, which means the small job will be handled quite later and this is not 
+   a good news for the average slowdown.
+
+3. Different from STRIDE, PRIORITY(average slowdown=183.63) scheduler relies solely on static priority. This property makes 
+   PRIORITY is somewhat more clumzy when handling more jobs waiting in the job queue, compared with those schedulers using 
+   "shortest prioritized" strategy. Consequently, this would hurt the average slowdown.
+
+4. As said before, the huge amount of jobs waiting in the job queue will lead to a large average slowdown in FIFO(average 
+   slowdown=399.81) because the waiting time is very long compared with the job size.
+
+## Variance of Slowdown
+
+1. SRPT(stddev slowdown=5.82) could lead to small turnaround for small jobs and large turnaround for large jobs, which lead 
+   to relatively small slowdown for every job. Therefore, SRPT would have a very small slowdown variance.
+   
+2. SJF(stddev slowdown=408.11) shares this strategy in general, but its non-preemptive property would cause disastrous increase
+   of slowdown for small jobs, which would finally hurt the slowdown variance. Actually. stddev slowdown=408.11 in workload 0.95
+   is much worse than the metric of workload 0.99 (stddev slowdown=245.24) and even workload 1.5(stddev slowdown=304.42). This 
+   weird data may be caused by the distribution of incoming jobs and shows that the waiting strategy is problematic.
+
+3. RR(stddev slowdown=25.90), STRIDE(stddev slowdown=28.35) would distribute system resouces for each job. The turnaround time
+   for each job is larger then that of SRPT, and is roughly proportional to the job size. This would lead to a larger slowdown 
+   variance than SRPT, but still quite acceptable.
+
+4. The slowdown of each job in FIFO(stddev slowodwn=4546.19) is very large, and the variance grow exponentially as well.
+
+5. PRIORITY(stddev slowdown=183.63) is just "medicore" since it could not do as good a job as SRPT. But it was also unable to 
+   make the situation extremely terrible just as FIFO beacuse the static priority could help relieve the problem of waiting. 
+
+
+
+# 1.5 workload
+
+The average job interarrival time is 1, while the average job size is 1.5.
+The average job size is greater than 1, jobs are "destined" to wait for the completion of previous jobs.
+
+Actually, the analyses for 1.5 workload extremely resemble the analyses for 0.95 workload because the behaviors of schedulers 
+are similar. When saying "similar", we mean in both cases schedulers must handle the long waiting line since the average job 
+size is no more tiny (e.g. 0.1) compared with 1.
+
+However, with 1.5 workload, the difference among result data of schedulers is just more obvious.
+
+## Mean of Turnaround
+
+Similar to the analyses for 0.95 workload:
+
+1. SJF(average turnaround=97.44) and SPRT(average turnaround=97.02) prioritize the execution of small jobs, which leads to best 
+   average turnaround.
+
+2. RR(average turnaround=310.74) and STRIDE(average turnaround=314.75) almost have the same average turnaround as FIFO(average 
+   turnaround=309.35). This is because in FIFO, jobs wait for the completion of previous jobs in the job queue; in RR and STRIDE,
+   although being executed soon, jobs can only use a small fraction of system resources and the execution may be slow. 
+
+3. The beneficial and detrimental effects of PRIORITY(average turnaround=325.51) just cancel out each other, making the average 
+   turnaround close to the "baseline", i.e. the metric of FIFO scheduler.
+
+## Variance of Turnaround
+
+Similar to the analyses for 0.95 workload:
+
+1. The waiting time mainly contribute to the turnaround for each job in FIFO(stddev turnaround=166.57). As a result, the turnaround 
+   variance in FIFO is not as significant as in other schedulers. 
+
+2. SJF(stddev turnaround=273.68), SRPT(stddev turnaround=273.89), RR(stddev turnaround=295.45) complete small jobs first and let 
+   large jobs wait, which causes an increase of turnaround variance.
+
+3. PRIORITY(stddev turnaround=426.54) uses static priority, which is not flexible enough for complicated situation. Consequently,
+   the turnaround for different jobs would vary widely, leading to a larger turnaround variance.
+
+4. As said before, the turnaround variance of STRIDE(stddev turnaround=329.33) is just between RR and PRIORITY.
+
+## Mean of Slowdown
+
+Similar to the analyses for 0.95 workload:
+
+1. SRPT(average slowdown=21.24) achieves best average slowdown by prioritizing the scheduling of small jobs. SJF(average 
+   slowdown=97.44) is unable to be equally optimized owing to the non-preemptive property.
+
+2. RR(average slowdown=219.58) and STRIDE(average slowdown=283.33) would execute small jobs in a relatively slow speed, hence 
+   it will hurt the average slowdown. And the dynamic priority of STRIDE may postpone the execution of small jobs, which would 
+   make a poorer performance.
+
+3. PRIORITY(average slowdown=1563.47) is not flexiblae enough to handle many jobs waiting in the job queue, which leads to bad
+   average slowdown.
+
+4. FIFO(average slowdown=3545.33) has a extremely long job queue, the waiting time is very long compared with the job size. This 
+   is the source of the large average slowdown.
+
+## Variance of Slowdown
+
+Similar to the analyses for 0.95 workload:
+
+1. The turnaround time assigned by SRPT(stddev slowdown=54.60) for jobs are roughly proportional to job sizes. This leads to 
+   relatively small slowdown for every job and the smallest slowdown variance.
+   
+2. The non-preemptive property of SJF(stddev slowdown=304.42) is problematic and would cause disastrous increase of slowdown 
+   for small jobs with unsuitable incoming jobs, which would finally hurt the slowdown variance.
+
+2. RR(stddev slowdown=255.13), STRIDE(stddev slowdown=510.17) allow jobs to share system resources. Although roughly proportional 
+   to the job size, the slowdown for each job is larger then that of SRPT. Hence we have a larger slowdown variance than SRPT.
+
+3. The slowdown of each job in FIFO(stddev slowodwn=41819.18) is unacceptable because the extremely long job queue.
+
+4. PRIORITY(stddev slowdown=17533.49) could not handle complicated situations with static priority. Although not as bad as FIFO, 
+   the slowdown variance of PRIORITY is extremely terrible.
+
+
+
+# Conclusion
+
+"()" means "roughly of the same level", "<<" means "far greater than".
+with a fixed average job interarrival time and an increasing workload, the comparison of 6 schedulers in different metrics:
+
+average turnaround time:                SRPT < SJF < (RR, STRIDE, FIFO, PRIORITY)
+stddev turnaround time:                 FIFO < (SRPT, SJF, RR) < STRIDE < PRIORITY
+average slowdown:                       SRPT < SJF < (RR, STRIDE) << PRIORITY << FIFO
+stddev slowdown:                        SRPT << (RR < STRIDE) < SJF << PRIORITY << FIFO

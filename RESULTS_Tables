@@ -1,0 +1,535 @@
+#Performance of different scheduler on each workload file
+
+# 0.1 workload:
+--------------------------------------------------------------------------------
+fifo:
+Statistics for time 1000.851203
+
+number of periodic tasks:               0
+number of sporadic jobs:                0
+number of aperiodic jobs:               989
+
+number of timer interrupts:             0
+
+average turnaround time:                0.119548
+stddev turnaround time:                 0.114388
+average slowdown:                       1.550772
+stddev slowdown:                        4.405622
+--------------------------------------------------------------------------------
+sjf:
+Statistics for time 1000.851203
+
+number of periodic tasks:               0
+number of sporadic jobs:                0
+number of aperiodic jobs:               989
+
+number of timer interrupts:             0
+
+average turnaround time:                0.118872
+stddev turnaround time:                 0.114674
+average slowdown:                       1.524674
+stddev slowdown:                        4.369130
+--------------------------------------------------------------------------------
+srpt:
+Statistics for time 1000.851203
+
+number of periodic tasks:               0
+number of sporadic jobs:                0
+number of aperiodic jobs:               989
+
+number of timer interrupts:             0
+
+average turnaround time:                0.113285
+stddev turnaround time:                 0.117733
+average slowdown:                       1.037443
+stddev slowdown:                        0.152601
+--------------------------------------------------------------------------------
+priority:
+Statistics for time 1000.851203
+
+number of periodic tasks:               0
+number of sporadic jobs:                0
+number of aperiodic jobs:               989
+
+number of timer interrupts:             0
+
+average turnaround time:                0.120355
+stddev turnaround time:                 0.121202
+average slowdown:                       1.406542
+stddev slowdown:                        3.510583
+--------------------------------------------------------------------------------
+rr:
+Statistics for time 1000.851203
+
+number of periodic tasks:               0
+number of sporadic jobs:                0
+number of aperiodic jobs:               989
+
+number of timer interrupts:             10061
+
+average turnaround time:                0.120321
+stddev turnaround time:                 0.124597
+average slowdown:                       1.138402
+stddev slowdown:                        0.473795
+--------------------------------------------------------------------------------
+stride:
+Statistics for time 1000.851203
+
+number of periodic tasks:               0
+number of sporadic jobs:                0
+number of aperiodic jobs:               989
+
+number of timer interrupts:             10061
+
+average turnaround time:                0.119962
+stddev turnaround time:                 0.122938
+average slowdown:                       1.153377
+stddev slowdown:                        0.627137
+--------------------------------------------------------------------------------
+
+
+
+# 0.5 workload:
+--------------------------------------------------------------------------------
+fifo:
+Statistics for time 1001.036568
+
+number of periodic tasks:               0
+number of sporadic jobs:                0
+number of aperiodic jobs:               989
+
+number of timer interrupts:             0
+
+average turnaround time:                1.087280
+stddev turnaround time:                 0.954602
+average slowdown:                       18.032024
+stddev slowdown:                        275.689716
+--------------------------------------------------------------------------------
+sjf:
+Statistics for time 1001.036568
+
+number of periodic tasks:               0
+number of sporadic jobs:                0
+number of aperiodic jobs:               989
+
+number of timer interrupts:             0
+
+average turnaround time:                0.936690
+stddev turnaround time:                 0.950187
+average slowdown:                       15.704550
+stddev slowdown:                        274.937118
+--------------------------------------------------------------------------------
+srpt:
+Statistics for time 1001.036568
+
+number of periodic tasks:               0
+number of sporadic jobs:                0
+number of aperiodic jobs:               989
+
+number of timer interrupts:             0
+
+average turnaround time:                0.771934
+stddev turnaround time:                 1.124911
+average slowdown:                       1.237591
+stddev slowdown:                        0.529272
+--------------------------------------------------------------------------------
+priority:
+Statistics for time 1001.036568
+
+number of periodic tasks:               0
+number of sporadic jobs:                0
+number of aperiodic jobs:               989
+
+number of timer interrupts:             0
+
+average turnaround time:                1.148482
+stddev turnaround time:                 1.597274
+average slowdown:                       5.982846
+stddev slowdown:                        33.089420
+--------------------------------------------------------------------------------
+rr:
+Statistics for time 1001.036568
+
+number of periodic tasks:               0
+number of sporadic jobs:                0
+number of aperiodic jobs:               989
+
+number of timer interrupts:             52225
+
+average turnaround time:                1.100618
+stddev turnaround time:                 1.308675
+average slowdown:                       2.235527
+stddev slowdown:                        2.637786
+--------------------------------------------------------------------------------
+stride:
+Statistics for time 1001.036568
+
+number of periodic tasks:               0
+number of sporadic jobs:                0
+number of aperiodic jobs:               989
+
+number of timer interrupts:             52225
+
+average turnaround time:                1.116855
+stddev turnaround time:                 1.412002
+average slowdown:                       2.797654
+stddev slowdown:                        6.905260
+--------------------------------------------------------------------------------
+
+
+
+# 0,9 workload:
+--------------------------------------------------------------------------------
+fifo:
+Statistics for time 1005.052645
+
+number of periodic tasks:               0
+number of sporadic jobs:                0
+number of aperiodic jobs:               989
+
+number of timer interrupts:             0
+
+average turnaround time:                14.188746
+stddev turnaround time:                 9.885369
+average slowdown:                       165.653823
+stddev slowdown:                        1503.389267
+--------------------------------------------------------------------------------
+sjf:
+Statistics for time 1005.052645
+
+number of periodic tasks:               0
+number of sporadic jobs:                0
+number of aperiodic jobs:               989
+
+number of timer interrupts:             0
+
+average turnaround time:                5.096405
+stddev turnaround time:                 16.789429
+average slowdown:                       18.334555
+stddev slowdown:                        218.935456
+--------------------------------------------------------------------------------
+srpt:
+Statistics for time 1005.052645
+
+number of periodic tasks:               0
+number of sporadic jobs:                0
+number of aperiodic jobs:               989
+
+number of timer interrupts:             0
+
+average turnaround time:                4.574639
+stddev turnaround time:                 17.553547
+average slowdown:                       2.268843
+stddev slowdown:                        3.996617
+--------------------------------------------------------------------------------
+priority:
+Statistics for time 1005.052645
+
+number of periodic tasks:               0
+number of sporadic jobs:                0
+number of aperiodic jobs:               989
+
+number of timer interrupts:             0
+
+average turnaround time:                15.497531
+stddev turnaround time:                 34.522750
+average slowdown:                       122.770205
+stddev slowdown:                        1371.078662
+--------------------------------------------------------------------------------
+rr:
+Statistics for time 1005.052645
+
+number of periodic tasks:               0
+number of sporadic jobs:                0
+number of aperiodic jobs:               989
+
+number of timer interrupts:             94375
+
+average turnaround time:                14.165215
+stddev turnaround time:                 18.406610
+average slowdown:                       15.865456
+stddev slowdown:                        16.545754
+--------------------------------------------------------------------------------
+stride:
+Statistics for time 1005.052645
+
+number of periodic tasks:               0
+number of sporadic jobs:                0
+number of aperiodic jobs:               989
+
+number of timer interrupts:             94375
+
+average turnaround time:                14.737954
+stddev turnaround time:                 25.777749
+average slowdown:                       19.542966
+stddev slowdown:                        42.599857
+--------------------------------------------------------------------------------
+
+
+
+# 0.95 workload:
+--------------------------------------------------------------------------------
+fifo:
+Statistics for time 1012.583111
+
+number of periodic tasks:               0
+number of sporadic jobs:                0
+number of aperiodic jobs:               989
+
+number of timer interrupts:             0
+
+average turnaround time:                22.112032
+stddev turnaround time:                 11.122232
+average slowdown:                       399.814316
+stddev slowdown:                        4546.189852
+--------------------------------------------------------------------------------
+sjf:
+Statistics for time 1012.583111
+
+number of periodic tasks:               0
+number of sporadic jobs:                0
+number of aperiodic jobs:               989
+
+number of timer interrupts:             0
+
+average turnaround time:                7.268908
+stddev turnaround time:                 24.633823
+average slowdown:                       25.119474
+stddev slowdown:                        408.116313
+--------------------------------------------------------------------------------
+srpt:
+Statistics for time 1012.583111
+
+number of periodic tasks:               0
+number of sporadic jobs:                0
+number of aperiodic jobs:               989
+
+number of timer interrupts:             0
+
+average turnaround time:                6.605037
+stddev turnaround time:                 26.586731
+average slowdown:                       2.742215
+stddev slowdown:                        5.821625
+--------------------------------------------------------------------------------
+priority:
+Statistics for time 1012.583111
+
+number of periodic tasks:               0
+number of sporadic jobs:                0
+number of aperiodic jobs:               989
+
+number of timer interrupts:             0
+
+average turnaround time:                24.042672
+stddev turnaround time:                 54.039948
+average slowdown:                       183.627505
+stddev slowdown:                        1931.370689
+--------------------------------------------------------------------------------
+rr:
+Statistics for time 1012.583111
+
+number of periodic tasks:               0
+number of sporadic jobs:                0
+number of aperiodic jobs:               989
+
+number of timer interrupts:             99661
+
+average turnaround time:                22.116751
+stddev turnaround time:                 25.048984
+average slowdown:                       25.897312
+stddev slowdown:                        58.658968
+--------------------------------------------------------------------------------
+stride:
+Statistics for time 1012.583111
+
+number of periodic tasks:               0
+number of sporadic jobs:                0
+number of aperiodic jobs:               989
+
+number of timer interrupts:             99661
+
+average turnaround time:                22.576601
+stddev turnaround time:                 42.522420
+average slowdown:                       28.351200
+stddev slowdown:                        63.914839
+--------------------------------------------------------------------------------
+
+
+
+# 0.99 workload:
+--------------------------------------------------------------------------------
+fifo:
+Statistics for time 1047.493702
+
+number of periodic tasks:               0
+number of sporadic jobs:                0
+number of aperiodic jobs:               989
+
+number of timer interrupts:             0
+
+average turnaround time:                40.385538
+stddev turnaround time:                 14.691459
+average slowdown:                       730.444009
+stddev slowdown:                        8616.990383
+--------------------------------------------------------------------------------
+sjf:
+Statistics for time 1047.493702
+
+number of periodic tasks:               0
+number of sporadic jobs:                0
+number of aperiodic jobs:               989
+
+number of timer interrupts:             0
+
+average turnaround time:                11.230021
+stddev turnaround time:                 58.578241
+average slowdown:                       17.463610
+stddev slowdown:                        245.244338
+--------------------------------------------------------------------------------
+srpt:
+Statistics for time 1047.493702
+
+number of periodic tasks:               0
+number of sporadic jobs:                0
+number of aperiodic jobs:               989
+
+number of timer interrupts:             0
+
+average turnaround time:                10.602225
+stddev turnaround time:                 59.038642
+average slowdown:                       3.569895
+stddev slowdown:                        11.653874
+--------------------------------------------------------------------------------
+priority:
+Statistics for time 1047.493702
+
+number of periodic tasks:               0
+number of sporadic jobs:                0
+number of aperiodic jobs:               989
+
+number of timer interrupts:             0
+
+average turnaround time:                44.276011
+stddev turnaround time:                 124.734828
+average slowdown:                       280.227040
+stddev slowdown:                        2339.790459
+--------------------------------------------------------------------------------
+rr:
+Statistics for time 1047.493702
+
+number of periodic tasks:               0
+number of sporadic jobs:                0
+number of aperiodic jobs:               989
+
+number of timer interrupts:             103860
+
+average turnaround time:                40.690240
+stddev turnaround time:                 42.543731
+average slowdown:                       45.413318
+stddev slowdown:                        96.418391
+--------------------------------------------------------------------------------
+stride:
+Statistics for time 1047.493702
+
+number of periodic tasks:               0
+number of sporadic jobs:                0
+number of aperiodic jobs:               989
+
+number of timer interrupts:             103860
+
+average turnaround time:                42.181331
+stddev turnaround time:                 93.167525
+average slowdown:                       56.190621
+stddev slowdown:                        219.847619
+--------------------------------------------------------------------------------
+
+
+
+# 1.5 workload:
+--------------------------------------------------------------------------------
+fifo:
+Statistics for time 1583.696328
+
+number of periodic tasks:               0
+number of sporadic jobs:                0
+number of aperiodic jobs:               989
+
+number of timer interrupts:             0
+
+average turnaround time:                309.358670
+stddev turnaround time:                 166.568609
+average slowdown:                       3545.327950
+stddev slowdown:                        41819.177687
+--------------------------------------------------------------------------------
+sjf:
+Statistics for time 1583.696328
+
+number of periodic tasks:               0
+number of sporadic jobs:                0
+number of aperiodic jobs:               989
+
+number of timer interrupts:             0
+
+average turnaround time:                97.444236
+stddev turnaround time:                 273.675608
+average slowdown:                       37.144592
+stddev slowdown:                        304.416518
+--------------------------------------------------------------------------------
+srpt:
+Statistics for time 1583.696328
+
+number of periodic tasks:               0
+number of sporadic jobs:                0
+number of aperiodic jobs:               989
+
+number of timer interrupts:             0
+
+average turnaround time:                97.028189
+stddev turnaround time:                 273.889575
+average slowdown:                       21.237636
+stddev slowdown:                        54.596363
+--------------------------------------------------------------------------------
+priority:
+Statistics for time 1583.696328
+
+number of periodic tasks:               0
+number of sporadic jobs:                0
+number of aperiodic jobs:               989
+
+number of timer interrupts:             0
+
+average turnaround time:                325.506193
+stddev turnaround time:                 426.537880
+average slowdown:                       1563.467635
+stddev slowdown:                        17533.485285
+--------------------------------------------------------------------------------
+rr:
+Statistics for time 1583.696328
+
+number of periodic tasks:               0
+number of sporadic jobs:                0
+number of aperiodic jobs:               989
+
+number of timer interrupts:             157618
+
+average turnaround time:                310.742998
+stddev turnaround time:                 295.453201
+average slowdown:                       219.583935
+stddev slowdown:                        255.129233
+--------------------------------------------------------------------------------
+stride:
+Statistics for time 1583.696328
+
+number of periodic tasks:               0
+number of sporadic jobs:                0
+number of aperiodic jobs:               989
+
+number of timer interrupts:             157618
+
+average turnaround time:                314.747374
+stddev turnaround time:                 329.329347
+average slowdown:                       283.338675
+stddev slowdown:                        510.173927
+--------------------------------------------------------------------------------
+
+#Done tables
