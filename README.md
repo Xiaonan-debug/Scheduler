@@ -1,3 +1,6 @@
+CS343 Operating system project course at Northwestern
+
+
 # Queueing/Scheduling Lab
 
 Simple event-driven simulator for single queue scheduling.
